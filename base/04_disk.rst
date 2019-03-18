@@ -40,6 +40,11 @@
 	$du -sh
 	653M
 
+或者指定某个目录::
+
+    $du -sh dir/
+    20M
+
 
 查看当前目录下所有子文件夹排序后的大小::
 
@@ -56,35 +61,39 @@
 
 打包是将多个文件归并到一个文件::
 
-    tar -cvf etc.tar /etc <==仅打包，不压缩！
+    $tar -cvf etc.tar /etc <==仅打包，不压缩！
 
-- -c :打包选项
+- -c :打包
 - -v :显示打包进度
 - -f :使用档案文件
 注：有的系统中指定参数时不需要在前面加上-，直接使用tar xvf
 
 示例：用tar实现文件夹同步，排除部分文件不同步::
 
-    tar --exclude '*.svn' -cvf - /path/to/source | ( cd /path/to/target; tar -xf -)
+    $tar --exclude '*.svn' -cvf - /path/to/source | ( cd /path/to/target; tar -xf -)
 
 **压缩**
 ::
 
     $gzip demo.txt
+
 生成 demo.txt.gz
+
+
 
 解包/解压缩
 ---------------------
 **解包**
 ::
 
-    tar -xvf demo.tar
--x 解包选项
+    $tar -xvf demo.tar
+- -x :解包
 
 解压后缀为 .tar.gz的文件
 1. 先解压缩，生成**.tar::
 
     $gunzip    demo.tar.gz
+
 2. 解包::
 
     $tar -xvf  demo.tar
@@ -93,17 +102,19 @@
 bz2解压::
 
     tar jxvf demo.tar.bz2
+
 如果tar 不支持j，则同样需要分两步来解包解压缩，使用bzip2来解压，再使用tar解包::
 
     bzip2 -d  demo.tar.bz2
     tar -xvf  demo.tar
+
 -d decompose,解压缩
 
-tar解压参数说明：
+tar压缩/解压参数说明：
 
-- -z 解压gz文件
-- -j 解压bz2文件
-- -J 解压xz文件
+- -z gz文件
+- -j bz2文件
+- -J xz文件
 
 总结
 -----------
@@ -111,7 +122,7 @@ tar解压参数说明：
 
 查看目录大小 du -sh
 
-打包  tar -cvf
+打包 tar -cvf
 
 解包 tar -xvf
 

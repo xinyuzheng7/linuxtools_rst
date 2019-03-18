@@ -70,6 +70,22 @@
 
 查找目录及文件 find/locate
 ----------------------------------------
+最基本的, 按名称在当前目录下查找文件::
+
+    $find ./ -name "*.rst"
+
+上述查找是大小写敏感的, 如果不区分大小写地查找::
+
+    $find ./ -iname "makefile"
+
+find可以查找三种类型的文件, ``f`` / ``d`` / ``s`` 分别表示——文件、目录、socket::
+
+    $find ./ -type d -name "projects"
+
+限制搜索的目录深度::
+
+    $find /etc -mindepth 1 -maxdepth 2 "passwd"
+
 搜寻文件或目录::
 
     $find ./ -name "core*" | xargs file
